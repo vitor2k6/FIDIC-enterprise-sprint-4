@@ -16,10 +16,12 @@ const RISK_COLORS = {
 const fmt = (v, decimals = 2) =>
   typeof v === "number" ? v.toFixed(decimals) : v ?? "-";
 
-const fmtBRL = (v) =>
-  typeof v === "number"
-    ? v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
-    : "-";
+const fmtBRL = (v) => {
+  if (typeof v !== "number") return "-";
+  if (v >= 1_000_000) return `R$ ${(v / 1_000_000).toFixed(1)}M`;
+  if (v >= 1_000)     return `R$ ${(v / 1_000).toFixed(1)}K`;
+  return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+};
 
 // ── KPI Card ──────────────────────────────────────────────
 function KpiCard({ label, value, sub, color }) {
