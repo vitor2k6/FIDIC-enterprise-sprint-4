@@ -5,7 +5,7 @@ import {
   ScatterChart, Scatter, Legend
 } from "recharts";
 
-const API = "http://localhost:8000";
+const API = "https://fidic-enterprise-sprint-4.onrender.com";
 
 const RISK_COLORS = {
   "Baixo Risco": "#22c55e",
